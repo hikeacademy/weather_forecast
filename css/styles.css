@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+body {
+    background-color: #27ae60;
+    padding-top: 100px;
+
+    -webkit-font-smoothing:antialiased;
+    -moz-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    -webkit-text-size-adjust:none;
+}
+
+.card {
+    background-color: white;
+    box-shadow: 0px 2px 2px;
+    border-radius: 0;
+    padding: 10px;
+    height: 400px;
+    width: 60%;
+    margin: auto;
+}
+
+.card img {
+    height: 150px;
+    width: 150px;
+    margin: 20px 0 auto;
+}
+
+.card #current-temperature {
+    font-size: 20pt;    
+    margin-right: 5px;
+}
+
+.now {
+    margin: auto;
+    text-align: center;
+}
+
+.next-hours {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 90%;
+    height: 150px;
+    margin: 0 auto;
+}
+
+.hour-card {
+    display: inline-block;
+    box-shadow: 0px 2px 2px;
+    margin: 5px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
+
+/*.next-hour-card img {
+    display: block;
+    height: 40px;
+    width: 40px;
+    margin: auto;
+}*/
+
+.city {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.city input {
+    border: 1px solid white;
+    margin-right: 10px;
+    padding: 10px;
+}
+
+.city input[type="text"] {
+    background: none;
+    color: white;
+}
+
+.city input[type="text"]::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1; /* Firefox */
+}
+
+.city input[type="text"]:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: white;
+}
+
+.city input[type="text"]::-ms-input-placeholder { /* Microsoft Edge */
+    color: white;
+}
+
+.city input[type="submit"] {
+    background: white;
+    color: #27ae60;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: bold;
+}
+
+.city input[type="submit"]:hover {
+    cursor: pointer;
+}
+
+.hour-card {
+    padding: 14px 0 14px 0;
+}
+
+.hour-card .day {
+    font-size: 10pt;
+    font-weight: bold;
+}
+
+.hour-card .time {
+    font-size: 10pt;
+    margin-bottom: 5px;
+}
+
+.hour-card span {
+    font-size: 16pt;
+}
+
+.hour-card .min {
+    color: #999999;
+}
+
+ul {
+    background-color: #eeeeee;
+    display: none;
+    width: 35%;
+    margin: 10px auto;
+    text-align: left;
+}
+
+li {
+    /*border: 1px solid white;*/
+    padding: 10px;
+}
+
+a {
+    color: black;
+}z
