@@ -3,7 +3,7 @@
 // TODO: add icon for when we can't find weather value
 
 $(function() {
-    const api = 'http://api.openweathermap.org/data/2.5/forecast';
+    const api = 'https://api.openweathermap.org/data/2.5/forecast';
     const appid = 'df8e3ed5b04fe032ff13c07e08200374';
     const iconFolder = 'img/';
 
