@@ -1,6 +1,7 @@
 // TODO: add load item while temperature is not loaded. This way, can also
 // show how to change element properties.
 // TODO: add icon for when we can't find weather value
+// TODO: 
 
 $(function() {
     const api = 'https://api.openweathermap.org/data/2.5/forecast';
@@ -55,6 +56,8 @@ $(function() {
     });
 
     function getForecast(city) {
+        $('#load-icon')[0].style.display = '';
+        $('#forecast')[0].style.display = 'none';
         $.ajax({
             url: api,
             data: { 
@@ -62,6 +65,9 @@ $(function() {
                 APPID: appid
             },
             success: function(result) {
+                $('#load-icon')[0].style.display = 'none';
+                $('#forecast')[0].style.display = '';
+
                 console.log(result);
                 clearFields();
 
@@ -79,7 +85,7 @@ $(function() {
 
                 displayToday(nextDays[0]);
                 displayOthers(nextDaysShort);
-            }   
+            }
         });
     }
 
