@@ -10,6 +10,7 @@
     <title>Previsão Incrível</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -17,7 +18,7 @@
 </head>
 <body>
     <div class="card">
-        <!-- 2 -->
+        <!-- Source: https://codepen.io/aurer/pen/jEGbA -->
         <div class="loader-container">
             <div id="load-icon" class="loader" title="1">
               <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -28,7 +29,7 @@
                   type="rotate"
                   from="0 25 25"
                   to="360 25 25"
-                  dur="0.6s"
+                  dur="1.0s"
                   repeatCount="indefinite"/>
                 </path>
               </svg>
@@ -37,10 +38,31 @@
 
         <div id="forecast">
             <div class="now">
-                <img id="weather-icon">
-                <div>
-                    <span id="current-temperature"></span>
-                    <a><span>ºC</span></a>
+                <div class="icon-container">
+                  <img id="weather-icon" src="img/clear.png">
+                  <div class="temperature">
+                    <span id="current-temperature">25</span>
+                    <span>ºC</span>
+                  </div>
+                </div>
+
+                <div class="info-container">
+                  <div>
+                    <span><b>Weather: </b></span>
+                    <span id="current-weather"></span>
+                  </div>
+
+                  <div>
+                    <span><b>Wind: </b></span>
+                    <span id="current-wind"></span>
+                    <a><span>km/h</span></a>
+                  </div>
+
+                  <div>
+                      <span><b>Humidity:</b> </span>
+                      <span id="current-humidity"></span>
+                      <span>%</span>
+                  </div>
                 </div>
             </div>
                     

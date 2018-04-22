@@ -11,7 +11,7 @@ $(function() {
     const iconMap = {
         'clear': iconFolder + 'clear.png',
         'rain': iconFolder + 'rain.png',
-        'cloudy': iconFolder + 'cloudy.png',
+        'clouds': iconFolder + 'clouds.png',
         'partly-cloudy': iconFolder + 'partly-cloudy.png'
     };
 
@@ -62,7 +62,8 @@ $(function() {
             url: api,
             data: { 
                 q: city, 
-                APPID: appid
+                APPID: appid,
+                units: 'metric'
             },
             success: function(result) {
                 $('#load-icon')[0].style.display = 'none';
@@ -74,14 +75,19 @@ $(function() {
                 const nextDays = result.list.splice(0, 15);
 
                 const nextDaysShort = nextDays.map(function(d) {
+                    // return {
+                    //     max: kelvinToCelsius(d.main.temp_max),
+                    //     min: kelvinToCelsius(d.main.temp_min),
+                    //     date: d.dt_txt
+                    // };
                     return {
-                        max: kelvinToCelsius(d.main.temp_max),
-                        min: kelvinToCelsius(d.main.temp_min),
+                        max: d.main.temp_max,
+                        min: d.main.temp_min,
                         date: d.dt_txt
                     };
                 });
 
-                console.log(nextDaysShort);
+                // console.log(nextDaysSho  rt);
 
                 displayToday(nextDays[0]);
                 displayOthers(nextDaysShort);
@@ -99,13 +105,18 @@ $(function() {
 
     function displayToday(today) {
         const temp = Math.round(today.main.temp);
-        // TODO: display image + text according to weather value
         const weather = today.weather[0].main;
-        // const weather = 'RAIN';
+        const wind = today.wind.speed;
+        const humidity = today.main.humidity;
+
         console.log('WEATHER: ', weather);
 
         $('#weather-icon').attr('src', iconMap[weather.toLowerCase()]);
-        $('#current-temperature').text(kelvinToCelsius(temp));
+        // $('#current-temperature').text(kelvinToCelsius(temp));
+        $('#current-temperature').text(temp);
+        $('#current-wind').text(wind);
+        $('#current-weather').text(weather);
+        $('#current-humidity').text(humidity);
     }
 
     function displayOthers(nextDays) {
