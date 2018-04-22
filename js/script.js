@@ -339,6 +339,7 @@ $(function() {
 
         // $('#load-icon').css('display', 'none');
         // $('#forecast').css('display', '');
+        // $('#city-name').text(result.city_name);
 
         // const nextDays = result.data;
         // const nextDaysShort = nextDays.map(function(d) {
@@ -351,6 +352,8 @@ $(function() {
 
         // displayToday(nextDays[0]);
         // displayNextDays(nextDaysShort);
+        // return;
+
         $.ajax({
             url: apiURL,
             data: { 
@@ -381,7 +384,6 @@ $(function() {
                 alert(xhr.responseText);
             }
         });
-        
     }
 
     /**

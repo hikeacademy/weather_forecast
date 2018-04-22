@@ -19,43 +19,17 @@ body {
 h1 {
     color: white;
     text-align: center;
-    margin-bottom: 15px;
+    margin-top: 40px;
+    margin-bottom: 20px;
 }
 
 h2 {
+    margin: 10px 0 10px;
     text-align: center;
 }
 
-
-ul {
-    background-color: #eeeeee;
-    display: none;
-    width: 35%;
-    margin: 10px auto;
-    text-align: left;
-    z-index: 1000;
-}
-
-li {
-    padding: 10px;
-}
-
-li:hover {
-    background-color: #e3e3e3;
-    cursor: pointer;
-}
-
-a {
-    color: black;
-}
-
-a:hover {
-    color: black;
-    text-decoration: none;
-}
-
 .loader-container {
-    margin: auto;
+    margin: 0 auto;
 }
 
 /*
@@ -66,25 +40,110 @@ svg rect{
   fill: #27ae60;
 }
 
-.card {
+#city-choice {
+    position: fixed;
+    top: 30px;
+    width: 100%;
+    z-index: 1;
+}
+
+#city-choice .container {
+    width: 40%;
+    min-width: 300px;
+    padding: 0;
+    margin: 0 auto;
     background-color: white;
     box-shadow: 0px 2px 20px;
+}
+
+#city-choice form {
+    display: flex;
+    padding: 10px;
+}
+
+#city-choice input {
+    border: none;
+    padding: 15px;
+}
+
+#city-choice input[type="text"] {
+    background: none;
+    color: #27ae60;
+}
+
+#city-choice input[type="text"]:focus {
+    outline: none;
+}
+
+#city-choice input[type="text"]::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #27ae60;
+    opacity: 1; /* Firefox */
+}
+
+#city-choice input[type="text"]:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #27ae60;
+}
+
+#city-choice input[type="text"]::-ms-input-placeholder { /* Microsoft Edge */
+    color: #27ae60;
+}
+
+#city-choice input[type="submit"] {
+    background: #27ae60;
+    border-radius: 5px;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: bold;
+    margin-left: auto;
+}
+
+#city-choice input[type="submit"]:hover {
+    cursor: pointer;
+}
+
+#city-choice ul {
+    background-color: white;
+    display: none;
+    margin-right: 0 auto;
+    text-align: left;
+    padding-left: 15px;
+}
+
+#city-choice li {
+    padding: 10px;
+}
+
+#city-choice li:hover {
+    background-color: #e3e3e3;
+    cursor: pointer;
+}
+
+#city-choice a {
+    color: black;
+}
+
+#city-choice a:hover {
+    text-decoration: none;
+}
+
+.card {
+    background-color: white;
+    box-shadow: 0px 2px 10px;
     border-radius: 0;
     padding: 10px 40px;
     height: 340px;
     width: 40%;
     min-width: 500px;
     margin: auto;
-    z-index: -1;
 }
 
 .now {
     display: flex;
     flex-direction: row;
     margin: 0 auto;
+    margin-bottom: 15px;
     text-align: center;
-    position: absolute;
-    top: 50px;
 }
 
 .icon-container {
@@ -147,47 +206,4 @@ svg rect{
 
 .day-card .min {
     color: #999999;
-}
-
-.city {
-    margin-top: 20px;
-    margin-bottom: 30px;
-    text-align: center;
-    z-index: 1000;
-}
-
-.city input {
-    border: 1px solid white;
-    margin-right: 10px;
-    padding: 10px;
-}
-
-.city input[type="text"] {
-    background: none;
-    color: white;
-}
-
-.city input[type="text"]::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: white;
-    opacity: 1; /* Firefox */
-}
-
-.city input[type="text"]:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: white;
-}
-
-.city input[type="text"]::-ms-input-placeholder { /* Microsoft Edge */
-    color: white;
-}
-
-.city input[type="submit"] {
-    background: white;
-    color: #27ae60;
-    padding-left: 20px;
-    padding-right: 20px;
-    font-weight: bold;
-}
-
-.city input[type="submit"]:hover {
-    cursor: pointer;
 }
