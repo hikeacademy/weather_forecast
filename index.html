@@ -17,6 +17,27 @@
     <script type="text/javascript" src="js/script.js"></script>
 </head>
 <body>
+    <h1>Previsão do Tempo Incrível</h1>
+
+    <div class="city">
+        <form>
+            <input type="text" id="city" placeholder="escolha uma cidade">
+            <input type="submit" id="search" value="Pesquisar">
+        </form>
+
+        <ul id="cities">
+          <li><a href="#">São Paulo</a></li>
+          <li><a href="#">Rio de Janeiro</a></li>
+
+          <li><a href="#">Maceió</a></li>
+          <li><a href="#">Espírito Santo</a></li>
+
+          <li><a href="#">Manaus</a></li>
+          <li><a href="#">Salvador</a></li>
+          <li><a href="#">Recife</a></li>
+        </ul>
+    </div>
+
     <div class="card">
         <!-- Source: https://codepen.io/aurer/pen/jEGbA -->
         <div class="loader-container">
@@ -42,24 +63,24 @@
                   <img id="weather-icon" src="img/clear.png">
                   <div class="temperature">
                     <span id="current-temperature">25</span>
-                    <span>ºC</span>
+                    <span>°C</span>
                   </div>
                 </div>
 
                 <div class="info-container">
                   <div>
-                    <span><b>Weather: </b></span>
+                    <span><b>Tempo: </b></span>
                     <span id="current-weather"></span>
                   </div>
 
                   <div>
-                    <span><b>Wind: </b></span>
+                    <span><b>Vento: </b></span>
                     <span id="current-wind"></span>
                     <a><span>km/h</span></a>
                   </div>
 
                   <div>
-                      <span><b>Humidity:</b> </span>
+                      <span><b>Humidade: </b></span>
                       <span id="current-humidity"></span>
                       <span>%</span>
                   </div>
@@ -67,29 +88,9 @@
             </div>
                     
 
-            <div id="next-hours" class="next-hours">
+            <div id="next-days" class="next-days">
             </div>
         </div>
-    </div>
-
-
-    <div class="city">
-        <form>
-            <input type="text" id="city" placeholder="choose a city">
-            <input type="submit" id="search" value="Search">
-        </form>
-
-        <ul id="cities">
-          <li><a href="#">São Paulo</a></li>
-          <li><a href="#">Rio de Janeiro</a></li>
-
-          <li><a href="#">Maceió</a></li>
-          <li><a href="#">Espírito Santo</a></li>
-
-          <li><a href="#">Manaus</a></li>
-          <li><a href="#">Salvador</a></li>
-          <li><a href="#">Recife</a></li>
-        </ul>
     </div>
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>

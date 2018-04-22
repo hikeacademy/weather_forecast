@@ -3,12 +3,12 @@
     padding: 0;
     box-sizing: border-box;
     list-style: none;
-    font-family: 'Raleway', sans-serif;
 }
 
 body {
     background-color: #27ae60;
     padding-top: 100px;
+    font-family: 'Raleway', sans-serif;
 
     -webkit-font-smoothing:antialiased;
     -moz-font-smoothing:antialiased;
@@ -16,15 +16,55 @@ body {
     -webkit-text-size-adjust:none;
 }
 
+h1 {
+    color: white;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+
+ul {
+    background-color: #eeeeee;
+    display: none;
+    width: 35%;
+    margin: 10px auto;
+    text-align: left;
+    z-index: 1000;
+}
+
+li {
+    padding: 10px;
+}
+
+a {
+    color: black;
+}
+
+.loader-container {
+    margin: auto;
+}
+
+/*
+  Set the color of the icon
+*/
+svg path,
+svg rect{
+  fill: #27ae60;
+}
+
 .card {
     background-color: white;
     box-shadow: 0px 2px 20px;
     border-radius: 0;
-    padding: 10px 60px;
+    padding: 10px 40px;
     height: 340px;
     width: 40%;
     min-width: 500px;
+    position: absolute;
+    top: 250px;
+    left: 30%;
     margin: auto;
+    z-index: -1;
 }
 
 .now {
@@ -61,7 +101,7 @@ body {
     justify-content: center;
 }
 
-.next-hours {
+.next-days {
     display: block;
     overflow-x: auto;
     white-space: nowrap;
@@ -72,24 +112,36 @@ body {
 
 .hour-card {
     display: inline-block;
-    /*box-shadow: 0px 2px 2px;*/
     border: 1px solid #cccccc;
     margin: 5px;
+    padding: 14px 0 14px 0;
     width: 100px;
     height: 100px;
     text-align: center;
 }
 
-/*.next-hour-card img {
-    display: block;
-    height: 40px;
-    width: 40px;
-    margin: auto;
-}*/
+.hour-card .date {
+    font-size: 10pt;
+    font-weight: bold;
+}
+
+.hour-card .weekday {
+    font-size: 10pt;
+    margin-bottom: 5px;
+}
+
+.hour-card span {
+    font-size: 16pt;
+}
+
+.hour-card .min {
+    color: #999999;
+}
 
 .city {
     margin-top: 20px;
     text-align: center;
+    z-index: 1000;
 }
 
 .city input {
@@ -126,55 +178,4 @@ body {
 
 .city input[type="submit"]:hover {
     cursor: pointer;
-}
-
-.hour-card {
-    padding: 14px 0 14px 0;
-}
-
-.hour-card .day {
-    font-size: 10pt;
-    font-weight: bold;
-}
-
-.hour-card .time {
-    font-size: 10pt;
-    margin-bottom: 5px;
-}
-
-.hour-card span {
-    font-size: 16pt;
-}
-
-.hour-card .min {
-    color: #999999;
-}
-
-ul {
-    background-color: #eeeeee;
-    display: none;
-    width: 35%;
-    margin: 10px auto;
-    text-align: left;
-}
-
-li {
-    /*border: 1px solid white;*/
-    padding: 10px;
-}
-
-a {
-    color: black;
-}
-
-.loader-container {
-    margin: auto;
-}
-
-/*
-  Set the color of the icon
-*/
-svg path,
-svg rect{
-  fill: #27ae60;
 }
