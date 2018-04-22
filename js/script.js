@@ -4,13 +4,13 @@
 // TODO: build map from weather code (200, 201, ...) to description. Or to image name. Unclear.
 // (https://www.weatherbit.io/api/codes). Or just use the image link
 // TODO: is there any way to keep key private?
-// TODO: set responses for when the request does not work.
+// TODO: set responses for when the request fails.
+// TODO: create response for when it can't find the city
 
 // API Doc: https://www.weatherbit.io/api
 
 // Default object to use when API is not available.
 const weatherTranslations = {"Thunderstorm with light rain":"Trovoada com chuva leve","Thunderstorm with rain":"Trovoada com chuva","Thunderstorm with heavy rain":"Trovoada com chuva forte","Thunderstorm with light drizzle":"Trovoada com leve garoa","Thunderstorm with drizzle":"Trovoada com chuvisco","Thunderstorm with heavy drizzle":"Trovoada com chuvisco pesado","Thunderstorm with Hail":"Trovoada com Granizo","Light Drizzle":"Chuviscamento Claro","Drizzle":"Chuvisco","Heavy Drizzle":"Chuvisco Pesado","Light Rain":"Chuva Leve","Moderate Rain":"Chuva Moderada","Heavy Rain":"Chuva Forte","Freezing rain":"Chuva Gelada","Light shower rain":"Chuva de Chuva Leve","Shower rain":"Chuva de Chuva","Heavy shower rain":"Chuva de Chuva Intensa","Light snow":"Neve Clara","Snow":" Neve ","Heavy Snow":" Neve Pesada ","Mix snow/rain":"Mistura neve/chuva ","Sleet":" Granizo ","Heavy sleet":" Fortes granizo ","Snow shower":" Chuva de neve ","Heavy snow shower":"Chuva de neve pesada ","Flurries":" Flurries ","Mist":" Névoa ","Smoke":" Fumaça ","Haze":"Neblina","Sand/dust":"Areia/poeira","Fog":"Nevoeiro","Freezing Fog":"Nevoeiro Congelante","Clear sky":"Céu claro","Few clouds":"Poucas nuvens","Scattered clouds":"Nuvens Dispersas","Broken clouds":"Nuvens Partidas","Overcast clouds":"Nuvens Nubladas","Unknown Precipitation":"Precipitação Desconhecida"};
-console.log(weatherTranslations);
 
 const example = {  
              "data":[  
@@ -333,17 +333,14 @@ $(function() {
     function getForecast(city) {
         $('#load-icon').css('display', '');
         $('#forecast').css('display', 'none');
+        clearFields();
 
         // const result = example;
 
         // $('#load-icon').css('display', 'none');
         // $('#forecast').css('display', '');
 
-        // console.log(result);
-        // clearFields();
-
         // const nextDays = result.data;
-
         // const nextDaysShort = nextDays.map(function(d) {
         //     return {
         //         max: d.max_temp,
@@ -363,9 +360,9 @@ $(function() {
             success: function(result) {
                 $('#load-icon').css('display', 'none');
                 $('#forecast').css('display', '');
+                $('#city-name').text(result.city_name);
 
                 console.log(result);
-                clearFields();
 
                 const nextDays = result.data.slice(1);
 
@@ -384,42 +381,58 @@ $(function() {
                 alert(xhr.responseText);
             }
         });
+        
     }
 
+    /**
+     * Empty next days field.
+     * Used when we are getting a new city.
+     */
     function clearFields() {
         $('#next-days').empty();
     }
 
+    /**
+     * Based on the information of a day, sets today's field.
+     * Set weather icon, temperature, wind, weather state and humidity.
+     */
     function displayToday(today) {
-        const temp = Math.round(today.temp);
+        const temperature = Math.round(today.temp);
         const weather = today.weather.description;
+        const weatherPt = weatherTranslations[weather];
         const weatherIcon = today.weather.icon;
-        const wind = today.wind_spd.toFixed(2);
+        const windSpeed = today.wind_spd.toFixed(2);
         const humidity = today.rh;
 
-        console.log('WEATHER: ', weather);
-
         $('#weather-icon').attr('src', `${iconLink + weatherIcon}.png`);
-        $('#current-temperature').text(temp);
-        $('#current-wind').text(wind);
-        $('#current-weather').text(weatherTranslations[weather]);
+        $('#current-temperature').text(temperature);
+        $('#current-wind').text(windSpeed);
+        $('#current-weather').text(weatherPt);
         $('#current-humidity').text(humidity);
     }
 
+    /**
+     * Display information for next days.
+     * Shows the date, the week day and the min an max temperatures.
+     * Iterates over the elements in the array given and creates as many HTML
+     * elements as there are elements in the array.
+     */
     function displayNextDays(nextDays) {
+        // Iterate over all elements in the array.
         for(let i = 0; i < nextDays.length; i++) {
+            // Create date object from the date string.
             const date = new Date(nextDays[i].date);
             const min = Math.round(nextDays[i].min);
             const max = Math.round(nextDays[i].max);
 
-            const x = $(`<div class="hour-card">
+            const day = $(`<div class="day-card">
                             <div class="date">${date.getDate()}/${date.getMonth() + 1}</div>
                             <div class="weekday">${weekdays[date.getDay()]}</div>
                             <span class="max">${max}°</span>
                             <span class="min">${min}°</span>
                         </div>`);
 
-            x.appendTo('#next-days');
+            day.appendTo('#next-days');
         }
     } 
 });

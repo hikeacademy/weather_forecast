@@ -22,6 +22,10 @@ h1 {
     margin-bottom: 15px;
 }
 
+h2 {
+    text-align: center;
+}
+
 
 ul {
     background-color: #eeeeee;
@@ -36,8 +40,18 @@ li {
     padding: 10px;
 }
 
+li:hover {
+    background-color: #e3e3e3;
+    cursor: pointer;
+}
+
 a {
     color: black;
+}
+
+a:hover {
+    color: black;
+    text-decoration: none;
 }
 
 .loader-container {
@@ -60,9 +74,6 @@ svg rect{
     height: 340px;
     width: 40%;
     min-width: 500px;
-    position: absolute;
-    top: 250px;
-    left: 30%;
     margin: auto;
     z-index: -1;
 }
@@ -110,7 +121,7 @@ svg rect{
     margin: 0 auto;
 }
 
-.hour-card {
+.day-card {
     display: inline-block;
     border: 1px solid #cccccc;
     margin: 5px;
@@ -120,26 +131,27 @@ svg rect{
     text-align: center;
 }
 
-.hour-card .date {
+.day-card .date {
     font-size: 10pt;
     font-weight: bold;
 }
 
-.hour-card .weekday {
+.day-card .weekday {
     font-size: 10pt;
     margin-bottom: 5px;
 }
 
-.hour-card span {
+.day-card span {
     font-size: 16pt;
 }
 
-.hour-card .min {
+.day-card .min {
     color: #999999;
 }
 
 .city {
     margin-top: 20px;
+    margin-bottom: 30px;
     text-align: center;
     z-index: 1000;
 }
