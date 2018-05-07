@@ -24,7 +24,7 @@ h1 {
 }
 
 h2 {
-    margin: 10px 0 10px;
+    margin: 10px 0;
     text-align: center;
 }
 
@@ -32,60 +32,48 @@ h2 {
     margin: 0 auto;
 }
 
-svg path,
-svg rect{
-  fill: #27ae60;
-}
-
-#city-choice {
+.city-search {
     position: fixed;
     top: 30px;
     width: 100%;
     z-index: 1;
 }
 
-#city-choice .container {
-    width: 40%;
-    min-width: 300px;
+.city-search .search-container {
+    border-radius: 4px;
+    width: 50%;
+    min-width: 400px;
     padding: 0;
     margin: 0 auto;
     background-color: white;
     box-shadow: 0px 2px 20px;
 }
 
-#city-choice form {
+.city-search form {
     display: flex;
     padding: 10px;
 }
 
-#city-choice input {
+.city-search input {
     border: none;
     padding: 15px;
 }
 
-#city-choice input[type="text"] {
+.city-search input[type="text"] {
     background: none;
     color: #27ae60;
 }
 
-#city-choice input[type="text"]:focus {
+.city-search input[type="text"]:focus {
     outline: none;
 }
 
-#city-choice input[type="text"]::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+.city-search input[type="text"]::placeholder {
     color: #27ae60;
-    opacity: 1; /* Firefox */
+    opacity: 1;
 }
 
-#city-choice input[type="text"]:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: #27ae60;
-}
-
-#city-choice input[type="text"]::-ms-input-placeholder { /* Microsoft Edge */
-    color: #27ae60;
-}
-
-#city-choice input[type="submit"] {
+.city-search input[type="submit"] {
     background: #27ae60;
     border-radius: 5px;
     color: white;
@@ -95,32 +83,31 @@ svg rect{
     margin-left: auto;
 }
 
-#city-choice input[type="submit"]:hover {
+.city-search input[type="submit"]:hover {
     cursor: pointer;
 }
 
-#city-choice ul {
+.city-search ul {
     background-color: white;
     display: none;
     text-align: left;
-    padding: 0 10px;
+    padding: 0 15px;
 }
 
-#city-choice li {
-    padding: 10px;
-    margin: 0 5px 0 5px; 
+.city-search li {
+    padding: 10px; 
 }
 
-#city-choice li:hover {
+.city-search li:hover {
     background-color: #e3e3e3;
     cursor: pointer;
 }
 
-#city-choice a {
+.city-search a {
     color: black;
 }
 
-#city-choice a:hover {
+.city-search a:hover {
     text-decoration: none;
 }
 
@@ -135,7 +122,7 @@ svg rect{
     margin: auto;
 }
 
-.now {
+.today {
     display: flex;
     flex-direction: row;
     margin: 0 auto;
@@ -147,7 +134,7 @@ svg rect{
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
-    margin: 0 40px 0 40px;
+    margin: 0 40px;
 }
 
 .icon-container img {
@@ -181,7 +168,7 @@ svg rect{
     display: inline-block;
     border: 1px solid #cccccc;
     margin: 5px;
-    padding: 14px 0 14px 0;
+    padding: 14px 0;
     width: 100px;
     height: 100px;
     text-align: center;
@@ -203,4 +190,23 @@ svg rect{
 
 .day-card .min {
     color: #999999;
+}
+
+.loader{
+  margin: 0 0 2em;
+  height: 100px;
+  width: 20%;
+  text-align: center;
+  padding: 1em;
+  margin: auto;
+  display: block;
+  vertical-align: top;
+}
+
+/*
+  Set the color of the icon
+*/
+svg path,
+svg rect{
+  fill: #FF6700;
 }

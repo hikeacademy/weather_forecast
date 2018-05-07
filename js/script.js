@@ -1,19 +1,16 @@
-// TODO: add load item while temperature is not loaded. This way, can also
-// show how to change element properties.
+'use strict';
+
 // TODO: add icon for when we can't find weather value
-// TODO: build map from weather code (200, 201, ...) to description. Or to image name. Unclear.
-// (https://www.weatherbit.io/api/codes). Or just use the image link
 // TODO: is there any way to keep key private?
 // TODO: set responses for when the request fails.
 // TODO: create response for when it can't find the city
+// TODO: switch to ºF
 
 // API Doc: https://www.weatherbit.io/api
 
 // Default object to use when API is not available.
-const weatherTranslations = {"Thunderstorm with light rain":"Trovoada com chuva leve","Thunderstorm with rain":"Trovoada com chuva","Thunderstorm with heavy rain":"Trovoada com chuva forte","Thunderstorm with light drizzle":"Trovoada com leve garoa","Thunderstorm with drizzle":"Trovoada com chuvisco","Thunderstorm with heavy drizzle":"Trovoada com chuvisco pesado","Thunderstorm with Hail":"Trovoada com Granizo","Light Drizzle":"Chuviscamento Claro","Drizzle":"Chuvisco","Heavy Drizzle":"Chuvisco Pesado","Light Rain":"Chuva Leve","Moderate Rain":"Chuva Moderada","Heavy Rain":"Chuva Forte","Freezing rain":"Chuva Gelada","Light shower rain":"Chuva de Chuva Leve","Shower rain":"Chuva de Chuva","Heavy shower rain":"Chuva de Chuva Intensa","Light snow":"Neve Clara","Snow":" Neve ","Heavy Snow":" Neve Pesada ","Mix snow/rain":"Mistura neve/chuva ","Sleet":" Granizo ","Heavy sleet":" Fortes granizo ","Snow shower":" Chuva de neve ","Heavy snow shower":"Chuva de neve pesada ","Flurries":" Flurries ","Mist":" Névoa ","Smoke":" Fumaça ","Haze":"Neblina","Sand/dust":"Areia/poeira","Fog":"Nevoeiro","Freezing Fog":"Nevoeiro Congelante","Clear sky":"Céu claro","Few clouds":"Poucas nuvens","Scattered clouds":"Nuvens Dispersas","Broken clouds":"Nuvens Partidas","Overcast clouds":"Nuvens Nubladas","Unknown Precipitation":"Precipitação Desconhecida"};
-
 const example = {  
-             "data":[  
+             "data":[
                 {  
                   "valid_date":"2017-04-01",
                    "ts":1503954000,
@@ -247,7 +244,6 @@ const example = {
 
 $(function() {
     const apiURL = 'https://api.weatherbit.io/v2.0/forecast/daily';
-    // const apiKey = '';
     const apiKey = '8498be461f15420b86aa0a722d0d8d95';
     const iconLink = 'https://www.weatherbit.io/static/img/icons/';
     const weekdays = {
@@ -260,46 +256,7 @@ $(function() {
         '6': 'Sáb'
     };
 
-    getForecast('Sao Paulo');
-
-    /**
-     * Show list when user clicks on input field.
-     */
-    $('#city').on('focus', function(e) {
-        $('#cities').css('display', 'block');
-    });
-
-    /**
-     * Hide list when user clicks out of list.
-     */
-    $('#city').on('focusout', function(e) {
-        setTimeout(function() {
-            $('#cities').css('display', 'none');
-        }, 100);
-    });
-
-    /**
-     * Filter list as user types on the input field.
-     */
-    $('#city').on('keyup', function(e) {
-        // Uppercased value inside input field.
-        const filter = e.target.value.toUpperCase();
-
-        // List of city itens. 
-        const cities = document.querySelectorAll('#cities li');
-
-        // Loop over the city itens. If the city passes the filter, it's
-        // displayed. Otherwise, it isn't.
-        for(let i = 0; i < cities.length; i++) {
-            let li = cities[i]; 
-            let a = li.getElementsByTagName('a')[0];
-            if(a.innerText.toUpperCase().indexOf(filter) > -1) {
-                li.style.display = '';
-            } else {
-                li.style.display = 'none';
-            }
-        }
-    });
+    getForecast('Recife');
 
     /**
      * When Search button is clicked, we get the forecast for the city on the
@@ -318,7 +275,7 @@ $(function() {
      * TODO: there's some bug, probably related to when the click is not on
      * an <li> item.
      */
-    $('#cities').on('click', function(e) {
+    $('#cities-list').on('click', function(e) {
         const choice = e.target.innerText;
         getForecast(choice);
         $('#city').val(choice);
@@ -358,7 +315,8 @@ $(function() {
             url: apiURL,
             data: { 
                 city: city, 
-                key: apiKey
+                key: apiKey,
+                lang: 'pt'
             },
             success: function(result) {
                 $('#load-icon').css('display', 'none');
@@ -391,6 +349,7 @@ $(function() {
      * Used when we are getting a new city.
      */
     function clearFields() {
+        $('#city-name').empty();
         $('#next-days').empty();
     }
 
@@ -401,7 +360,6 @@ $(function() {
     function displayToday(today) {
         const temperature = Math.round(today.temp);
         const weather = today.weather.description;
-        const weatherPt = weatherTranslations[weather];
         const weatherIcon = today.weather.icon;
         const windSpeed = today.wind_spd.toFixed(2);
         const humidity = today.rh;
@@ -409,7 +367,7 @@ $(function() {
         $('#weather-icon').attr('src', `${iconLink + weatherIcon}.png`);
         $('#current-temperature').text(temperature);
         $('#current-wind').text(windSpeed);
-        $('#current-weather').text(weatherPt);
+        $('#current-weather').text(weather);
         $('#current-humidity').text(humidity);
     }
 
@@ -428,8 +386,8 @@ $(function() {
             const max = Math.round(nextDays[i].max);
 
             const day = $(`<div class="day-card">
-                            <div class="date">${date.getDate()}/${date.getMonth() + 1}</div>
-                            <div class="weekday">${weekdays[date.getDay()]}</div>
+                            <div class="date">${date.getUTCDate()}/${date.getUTCMonth() + 1}</div>
+                            <div class="weekday">${weekdays[date.getUTCDay()]}</div>
                             <span class="max">${max}°</span>
                             <span class="min">${min}°</span>
                         </div>`);
