@@ -17,16 +17,16 @@
     <script type="text/javascript" src="js/script.js"></script>
 </head>
 <body>
+    <h1>Previsão Incrível</h1>
+
     <div class="city-search">
       <div class="search-container">
-        <form>
+        <form action="#">
             <input type="text" id="city" placeholder="escolha uma cidade">
             <input type="submit" id="search" value="Pesquisar">
         </form>
       </div>
     </div>
-
-    <h1>Previsão Incrível</h1>
 
     <div class="card">
         <!-- Source: https://codepen.io/aurer/pen/jEGbA -->
@@ -46,41 +46,40 @@
               </svg>
             </div>
         </div>
-
-        <h2 id="city-name"></h2>
-
         <div id="forecast">
-          <div class="today">
-              <div class="icon-container">
-                <img id="weather-icon" src="img/clear.png">
-                <div class="temperature">
-                  <span id="current-temperature">25</span>
-                  <span>°C</span>
-                </div>
-              </div>
-
-              <div class="info-container">
-                <div>
-                  <span><b>Tempo: </b></span>
-                  <span id="current-weather"></span>
+            <h2 id="city-name">Recife</h2>
+         
+            <div class="today">
+                <div class="icon-container">
+                    <img id="weather-icon">
+                    <div class="temperature">
+                      <span id="current-temperature"></span>
+                      <span>°C</span>
+                    </div>
                 </div>
 
-                <div>
-                  <span><b>Vento: </b></span>
-                  <span id="current-wind"></span>
-                  <a><span>km/h</span></a>
-                </div>
+                <div class="info-container">
+                    <div>
+                      <span><b>Tempo: </b></span>
+                      <span id="current-weather"></span>
+                    </div>
 
-                <div>
-                    <span><b>Humidade: </b></span>
-                    <span id="current-humidity"></span>
-                    <span>%</span>
-                </div>
-              </div>
-          </div>
+                    <div>
+                      <span><b>Vento: </b></span>
+                      <span id="current-wind"></span>
+                      <a><span>km/h</span></a>
+                    </div>
 
-          <div id="next-days" class="next-days">
-          </div>
+                    <div>
+                        <span><b>Humidade: </b></span>
+                        <span id="current-humidity"></span>
+                        <span>%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="next-days" class="next-days">
+            </div>
         </div>
     </div>
 </body>
