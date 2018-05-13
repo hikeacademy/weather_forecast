@@ -28,6 +28,11 @@
       </div>
     </div>
 
+    <div class="flag-switch" data-first-lang="Celsius" data-second-lang="Fahrenheit">
+      <input type="checkbox" id="unit-toggle" checked>
+      <label for="unit-toggle"></label>
+    </div>
+
     <div class="card">
         <!-- Source: https://codepen.io/aurer/pen/jEGbA -->
         <div class="loader-container">
@@ -54,7 +59,7 @@
                     <img id="weather-icon">
                     <div class="temperature">
                       <span id="current-temperature"></span>
-                      <span>°C</span>
+                      <span id="unit"></span>
                     </div>
                 </div>
 

@@ -8,6 +8,8 @@
 
 // API Doc: https://www.weatherbit.io/api
 
+let celsius = true;
+let currentCity = 'Recife';
 // Default object to use when API is not available.
 const example = {  
              "data":[
@@ -256,7 +258,7 @@ $(function() {
         '6': 'Sáb'
     };
 
-    getForecast('Recife');
+    getForecast(currentCity);
 
     /**
      * When Search button is clicked, we get the forecast for the city on the
@@ -265,8 +267,8 @@ $(function() {
     $('#search').on('click', function(e) {
         // Prevent from submiting form.
         e.preventDefault();
-        const newCity = $('#city').val();
-        getForecast(newCity);
+        currentCity = $('#city').val();
+        getForecast(currentCity);
     });
 
     /**
@@ -281,6 +283,11 @@ $(function() {
         $('#city').val(choice);
     });
 
+    $('#unit-toggle').on('change', function(e) {
+      celsius = !celsius;
+      getForecast(currentCity);
+    });
+
     /**
      * Call API for city whose forecast we want to know.
      * In case the API call succeeds, display results with today's detailed
@@ -290,26 +297,12 @@ $(function() {
     function getForecast(city) {
         $('#load-icon').css('display', '');
         $('#forecast').css('display', 'none');
+        
+        const unit = (celsius ? '°C' : '°F');
+        console.log(unit);
+        $('#unit').text(unit);
+
         clearFields();
-
-        // const result = example;
-
-        // $('#load-icon').css('display', 'none');
-        // $('#forecast').css('display', '');
-        // $('#city-name').text(result.city_name);
-
-        // const nextDays = result.data;
-        // const nextDaysShort = nextDays.map(function(d) {
-        //     return {
-        //         max: d.max_temp,
-        //         min: d.min_temp,
-        //         date: d.valid_date
-        //     };
-        // });
-
-        // displayToday(nextDays[0]);
-        // displayNextDays(nextDaysShort);
-        // return;
 
         $.ajax({
             url: apiURL,
@@ -358,7 +351,10 @@ $(function() {
      * Set weather icon, temperature, wind, weather state and humidity.
      */
     function displayToday(today) {
-        const temperature = Math.round(today.temp);
+        let temperature = Math.round(today.temp);
+        if(!celsius) {
+          temperature = fromCelsiusToFahrenheit(temperature);
+        }
         const weather = today.weather.description;
         const weatherIcon = today.weather.icon;
         const windSpeed = today.wind_spd.toFixed(2);
@@ -382,8 +378,12 @@ $(function() {
         for(let i = 0; i < nextDays.length; i++) {
             // Create date object from the date string.
             const date = new Date(nextDays[i].date);
-            const min = Math.round(nextDays[i].min);
-            const max = Math.round(nextDays[i].max);
+            let min = Math.round(nextDays[i].min);
+            let max = Math.round(nextDays[i].max);
+            if(!celsius) {
+              min = fromCelsiusToFahrenheit(min);
+              max = fromCelsiusToFahrenheit(max);
+            }
 
             const day = $(`<div class="day-card">
                             <div class="date">${date.getUTCDate()}/${date.getUTCMonth() + 1}</div>
@@ -394,5 +394,9 @@ $(function() {
 
             day.appendTo('#next-days');
         }
-    } 
+    }
+
+    function fromCelsiusToFahrenheit(celsius) {
+      return Math.round(1.8 * celsius + 32);
+    }
 });
